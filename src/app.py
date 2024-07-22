@@ -1,3 +1,13 @@
+#before run app.py
+#export DB_USER=gitpod
+#export DB_HOST=localhost
+#export DB_PASSWORD=postgres
+#export DB_NAME=sample-db
+
+#psql -h localhost -U gitpod -d sample-db
+#dropdb -h localhost -U postgres sample-db
+#\l list databases
+#\dt list of the tables present in the db
 import os
 from sqlalchemy import create_engine
 import pandas as pd
@@ -10,8 +20,6 @@ DB_PASSWORD = os.getenv('DB_PASSWORD', 'postgres')
 DB_HOST = os.getenv('DB_HOST', 'localhost')
 DB_NAME = os.getenv('DB_NAME', 'sample-db')
 
-if not all([DB_USER, DB_PASSWORD, DB_HOST, DB_NAME]):
-    raise ValueError("Some environment variables are missing")
 
 connection_string = f"postgresql://{os.getenv('DB_USER')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_HOST')}/{os.getenv('DB_NAME')}"
 engine = create_engine(connection_string).execution_options(autocommit=True)
